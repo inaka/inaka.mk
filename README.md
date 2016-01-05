@@ -20,6 +20,10 @@ DEP_PLUGINS = inaka_mk
 Run `make help` in order to check what targets are available for
 `inaka.mk`.
 
+## Example
+
+For an example of usage, check [lsl](https://github.com/inaka/lsl)'s [Makefile](https://github.com/inaka/lsl/blob/master/Makefile)
+
 ## Contact Us
 
 For **questions** or **general comments** regarding the use of this library,
