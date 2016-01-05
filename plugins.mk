@@ -12,7 +12,8 @@ help::
 	$(verbose) printf "%s\n" "" \
 		"inaka.mk targets:"\
 		"  plt-all     Builds the plt including the modules in the test folder" \
-		"  dialyze-all Runs dialyzer including the modules in the test folder"
+		"  dialyze-all Runs dialyzer including the modules in the test folder" \
+		"  quicktests  Runs the tests without recompiling dependencies"
 
 # Plugin-specific targets.
 
@@ -26,3 +27,7 @@ plt-all: test-deps test-build-for-plt-all plt
 
 dialyze-all: app test-build-for-plt-all dialyze
 
+quicktests: app
+	@$(MAKE) --no-print-directory app-build test-dir ERLC_OPTS="$(TEST_ERLC_OPTS)"
+	$(verbose) mkdir -p $(CURDIR)/logs/
+	$(gen_verbose) $(CT_RUN) -suite $(addsuffix _SUITE,$(CT_SUITES)) $(CT_OPTS)
